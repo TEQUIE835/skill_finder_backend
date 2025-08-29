@@ -1,5 +1,6 @@
 require ('dotenv').config({path: '../../.env'});
 const mysql = require('mysql2')
+const fs = require('fs')
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
@@ -8,7 +9,7 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
   port : process.env.DB_PORT,
   ssl: {
-    rejectUnauthorized: true,
+    ssl: { ca: fs.readFileSync("../etc/secrets/ca.pem") }
   },
   waitForConnections: true,
   connectionLimit: 10, 
