@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 app.use(cookieParser());
 app.use(cors({
-    origin: process.env.FRONT_URL,
+    origin: [process.env.FRONT_URL, process.env.FRONTEND_URL],
   credentials: true    
 }));
 
